@@ -18,21 +18,26 @@ with open("text.txt", encoding="utf-8") as file:
             )
         cook_book[dish_name] = cook_list
     del cook_book["Фахитос"]
-    #print(cook_list)
-pprint(f"cook_book = {cook_book}")
+    print(cook_list)
+
+for dish_name, ingredients in cook_book.items():
+    print(dish_name, ingredients, sep="\n")
 
 
-def get_shop_list_by_dishes(dish_name, person_count):
-    for dish in cook_book:
-        for ingredients in cook_book[dish]:
-            for ingredient, measure in ingredients.items():
-                print(measure)
-#     for dish in cook_book:
-print(get_shop_list_by_dishes("Омлет",5))
-#
-#         else:
-#             print("Такого блюда нет в меню")
-#     print(my_cook_book)
-#
-# print(get_shop_list_by_dishes("Омлет", 7))
-# print(new_cook)
+def get_shop_list_by_dishes(dishes, person_count):
+    new_cook = {}
+    for dish in dishes:
+        if dish in cook_book:
+            for ingredient in cook_book[dish]:
+                ingredient["quantity"] *= person_count
+                new_cook[ingredient["ingredient_name"]] = ingredient
+        else:
+            print(f"такого блюда как {dish} нет в меню")
+    meal_dict = {}
+    for value in new_cook.values():
+        name = value["ingredient_name"]
+        del value["ingredient name"]
+        meal_dict[name] = value
+    return  meal_dict
+print(get_shop_list_by_dishes("Омлет", 5))
+
