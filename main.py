@@ -17,11 +17,11 @@ with open("text.txt", encoding="utf-8") as file:
                 }
             )
         cook_book[dish_name] = cook_list
-    del cook_book["Фахитос"]
-    print(cook_list)
+
 
 for dish_name, ingredients in cook_book.items():
-    print(dish_name, ingredients, sep="\n")
+   print(dish_name, ingredients, sep="\n")
+
 
 
 def get_shop_list_by_dishes(dishes, person_count):
@@ -30,14 +30,14 @@ def get_shop_list_by_dishes(dishes, person_count):
         if dish in cook_book:
             for ingredient in cook_book[dish]:
                 ingredient["quantity"] *= person_count
-                new_cook[ingredient["ingredient_name"]] = ingredient
-        else:
-            print(f"такого блюда как {dish} нет в меню")
+                new_cook.setdefault(ingredient["ingredient_name"], ingredient)
     meal_dict = {}
     for value in new_cook.values():
         name = value["ingredient_name"]
-        del value["ingredient name"]
+        del value["ingredient_name"]
         meal_dict[name] = value
     return  meal_dict
-print(get_shop_list_by_dishes("Омлет", 5))
+
+
+print(get_shop_list_by_dishes(["Омлет"], 5))
 
